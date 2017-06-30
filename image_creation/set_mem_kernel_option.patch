@@ -1,0 +1,19 @@
+*** target/linux/brcm47xx/config-3.18.bak	2017-06-29 10:18:02.807223837 -0400
+--- target/linux/brcm47xx/config-3.18	2017-06-29 10:32:19.859528127 -0400
+***************
+*** 35,41 ****
+  CONFIG_CC_OPTIMIZE_FOR_SIZE=y
+  CONFIG_CEVT_R4K=y
+  CONFIG_CLONE_BACKWARDS=y
+! CONFIG_CMDLINE="noinitrd console=ttyS0,115200"
+  CONFIG_CMDLINE_BOOL=y
+  # CONFIG_CMDLINE_OVERRIDE is not set
+  # CONFIG_CPU_BMIPS is not set
+--- 35,41 ----
+  CONFIG_CC_OPTIMIZE_FOR_SIZE=y
+  CONFIG_CEVT_R4K=y
+  CONFIG_CLONE_BACKWARDS=y
+! CONFIG_CMDLINE="noinitrd console=ttyS0,115200 mem=16M"
+  CONFIG_CMDLINE_BOOL=y
+  # CONFIG_CMDLINE_OVERRIDE is not set
+  # CONFIG_CPU_BMIPS is not set
