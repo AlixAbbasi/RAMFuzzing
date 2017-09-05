@@ -4,12 +4,14 @@
 #include <netdb.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 char* response = "Ok Cool!\n";
 
 uint32_t access_memory( uint8_t** data){
+  uint8_t* ptr;
   uint8_t res = 0;
-  for(uint8_t* ptr = data[1]; ptr < data[2]; ptr ++){
+  for(ptr = data[1]; ptr < data[2]; ptr ++){
     res += *ptr;
   }
   return res;
@@ -50,16 +52,16 @@ int main()
   bind(listen_fd, (struct sockaddr *) &servaddr, sizeof(servaddr));
 
   listen(listen_fd, 10);
-
+  system("echo none > /sys/class/leds/bcm47xx\\:green\\:dmz/trigger");
   while(1) {
     comm_fd = accept(listen_fd, (struct sockaddr*) NULL, NULL);
-    system("led_on bcm47xx:green:dmz");
+    system("echo 255 > /sys/class/leds/bcm47xx\\:green\\:dmz/brightness");
     read(comm_fd,str,12);
     if(handle(str)){
       write(comm_fd,response, strlen(response));
     }
     close(comm_fd);
-    system("led_off bcm47xx:green:dmz");
+    system("echo 0 > /sys/class/leds/bcm47xx\\:green\\:dmz/brightness");
   }
   return 0;
 }
